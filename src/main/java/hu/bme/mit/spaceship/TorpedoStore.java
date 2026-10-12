@@ -28,6 +28,8 @@ public class TorpedoStore {
     }
   }
 
+  private Random generator = new Random(); //Brought it out of the fire method to avoid creating a new Random instance every time fire is called
+
   public boolean fire(int numberOfTorpedos){
     if(numberOfTorpedos < 1 || numberOfTorpedos > this.torpedoCount){
       throw new IllegalArgumentException("numberOfTorpedos");
@@ -36,7 +38,7 @@ public class TorpedoStore {
     boolean success = false;
 
     // simulate random overheating of the launcher bay which prevents firing
-    Random generator = new Random(); //Ignore Sonar warning, this is just a simulation
+    // Random generator = new Random();
     double r = generator.nextDouble();
 
     if (r >= FAILURE_RATE) {
